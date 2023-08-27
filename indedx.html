@@ -187,295 +187,295 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>COVID-19疫苗使用情况 - 截止2025年3月</h1>
-    <div class="map">
-        <div class="region" data-region="mainland"><span class="fi fi-cn"></span> 中国大陆</div>
-        <div class="region" data-region="hongkong"><span class="fi fi-hk"></span> 香港</div>
-        <div class="region" data-region="macau"><span class="fi fi-mo"></span> 澳门</div>
-        <div class="region" data-region="taiwan"><span class="fi fi-tw"></span> 台湾</div>
-        <div class="region" data-region="usa"><span class="fi fi-us"></span> 美国</div>
-        <div class="region" data-region="japan"><span class="fi fi-jp"></span> 日本</div>
-        <div class="region" data-region="uk"><span class="fi fi-gb"></span> 英国</div>
-        <div class="region" data-region="india"><span class="fi fi-in"></span> 印度</div>
-        <div class="region" data-region="brazil"><span class="fi fi-br"></span> 巴西</div>
-        <div class="region" data-region="germany"><span class="fi fi-de"></span> 德国</div>
-        <div class="region" data-region="russia"><span class="fi fi-ru"></span> 俄罗斯</div>
-        <div class="region" data-region="southafrica"><span class="fi fi-za"></span> 南非</div>
-    </div>
-    <div class="info-panel" id="infoPanel">
-        <button class="close-btn" onclick="closePanel()">×</button>
-        <h2 id="regionTitle"><i class="fas fa-syringe"></i></h2>
-        <p><strong><i class="fas fa-vial"></i> 疫苗类型:</strong> <span id="vaccineTypes"></span></p>
-        <p><strong><i class="fas fa-users"></i> 接种人数:</strong> <span id="vaccinatedCount"></span></p>
-        <p><strong><i class="fas fa-chart-pie"></i> 覆盖率:</strong> <span id="coverageRate"></span></p>
-        <p><strong><i class="fas fa-info-circle"></i> 详细信息:</strong> <span id="details"></span></p>
-        <div class="progress-bar">
-            <div class="progress" id="progressBar"></div>
+    <div class="container">
+        <h1>COVID-19疫苗使用情况 - 截止2025年3月</h1>
+        <div class="map">
+            <div class="region" data-region="mainland"><span class="fi fi-cn"></span> 中国大陆</div>
+            <div class="region" data-region="hongkong"><span class="fi fi-hk"></span> 香港</div>
+            <div class="region" data-region="macau"><span class="fi fi-mo"></span> 澳门</div>
+            <div class="region" data-region="taiwan"><span class="fi fi-tw"></span> 台湾</div>
+            <div class="region" data-region="usa"><span class="fi fi-us"></span> 美国</div>
+            <div class="region" data-region="japan"><span class="fi fi-jp"></span> 日本</div>
+            <div class="region" data-region="uk"><span class="fi fi-gb"></span> 英国</div>
+            <div class="region" data-region="india"><span class="fi fi-in"></span> 印度</div>
+            <div class="region" data-region="brazil"><span class="fi fi-br"></span> 巴西</div>
+            <div class="region" data-region="germany"><span class="fi fi-de"></span> 德国</div>
+            <div class="region" data-region="russia"><span class="fi fi-ru"></span> 俄罗斯</div>
+            <div class="region" data-region="southafrica"><span class="fi fi-za"></span> 南非</div>
         </div>
-        <div class="timeline" id="timeline"></div>
-        <p><strong><i class="fas fa-link"></i> 数据来源:</strong> <a id="dataSource" href="#" target="_blank" style="color: #81C784;"></a></p>
-        <button class="vaccine-btn" onclick="showVaccineData()"><i class="fas fa-database"></i> 查看疫苗数据</button>
-        <button class="report-btn" onclick="showReport()"><i class="fas fa-file-alt"></i> 查看研究报告</button>
+        <div class="info-panel" id="infoPanel">
+            <button class="close-btn" onclick="closePanel()">×</button>
+            <h2 id="regionTitle"><i class="fas fa-syringe"></i></h2>
+            <p><strong><i class="fas fa-vial"></i> 疫苗类型:</strong> <span id="vaccineTypes"></span></p>
+            <p><strong><i class="fas fa-users"></i> 接种人数:</strong> <span id="vaccinatedCount"></span></p>
+            <p><strong><i class="fas fa-chart-pie"></i> 覆盖率:</strong> <span id="coverageRate"></span></p>
+            <p><strong><i class="fas fa-info-circle"></i> 详细信息:</strong> <span id="details"></span></p>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="timeline" id="timeline"></div>
+            <p><strong><i class="fas fa-link"></i> 数据来源:</strong> <a id="dataSource" href="#" target="_blank" style="color: #81C784;"></a></p>
+            <button class="vaccine-btn" onclick="showVaccineData()"><i class="fas fa-database"></i> 查看疫苗数据</button>
+            <button class="report-btn" onclick="showReport()"><i class="fas fa-file-alt"></i> 查看研究报告</button>
+        </div>
     </div>
-</div>
-<script>
-    const vaccineData = {
-        mainland: {
-            title: "<span class='fi fi-cn'></span> 中国大陆",
-            vaccines: "Sinovac (科兴), Sinopharm (国药), CanSino",
-            count: "截至2025年3月，约36亿剂次",
-            coverage: "92.5%",
-            details: "中国大陆自2020年起大规模推广国产疫苗，Sinovac和Sinopharm为主要类型。根据<a href='https://www.who.int/news-room/feature-stories/detail/who-supports-vaccine-rollout-in-china' target='_blank'>WHO报告</a>，疫苗有效性在50%-79%之间，对重症保护显著，‘疫苗在降低重症病例和死亡率方面发挥了重要作用，尤其在老年人群体中效果显著’。截至2025年，加强针覆盖率达80%以上，特别是在高风险人群和城市地区推广成效显著，农村地区接种率逐步提高。",
-            timeline: [
-                "2020年12月：疫苗获批紧急使用",
-                "2021年3月：全国大规模接种启动",
-                "2022年-2025年：推广加强针，覆盖率达92.5%"
-            ],
-            source: "https://data.who.int/dashboards/covid19/"
-        },
-        hongkong: {
-            title: "<span class='fi fi-hk'></span> 香港",
-            vaccines: "辉瑞-BioNTech, 莫德纳, 科兴",
-            count: "截至2025年3月，约800万人接种",
-            coverage: "85.0%",
-            details: "香港卫生署报告显示，辉瑞疫苗占接种量的50%以上，科兴因储存便利使用广泛。根据<a href='https://www.chp.gov.hk/files/pdf/covid_vaccination_programme_evaluation.pdf' target='_blank'>香港卫生署</a>，‘mRNA疫苗在免疫反应上表现优于灭活疫苗，抗体水平平均高出30%’。2021年包装问题曾引发争议，但经调查后恢复正常供应。2025年加强针覆盖率约70%，尤其在医疗工作者和老年人中普及率较高。",
-            timeline: [
-                "2021年1月：批准辉瑞疫苗",
-                "2021年3月24日：暂停BioNTech疫苗，后恢复",
-                "2022年-2025年：持续推广加强针"
-            ],
-            source: "https://www.chp.gov.hk/en/index.html"
-        },
-        macau: {
-            title: "<span class='fi fi-mo'></span> 澳门",
-            vaccines: "辉瑞-BioNTech, 科兴",
-            count: "截至2025年3月，约65万人完成两剂",
-            coverage: "88.0%",
-            details: "澳门卫生局数据显示，辉瑞和科兴疫苗为主，覆盖率逐年提升。根据<a href='https://www.ssm.gov.mo/docs/2025_vaccine_report.pdf' target='_blank'>澳门卫生局报告</a>，‘疫苗接种后未见重大不良反应，安全性较高’。2022年后取消疫苗证明要求，2025年加强针接种率达60%，旅游业复苏推动疫苗推广，特别是在服务行业从业者中接种率接近95%。",
-            timeline: [
-                "2021年：开始接种",
-                "2022年8月17日：取消疫苗证明要求",
-                "2025年：加强针覆盖率提高至60%"
-            ],
-            source: "https://www.ssm.gov.mo/"
-        },
-        taiwan: {
-            title: "<span class='fi fi-tw'></span> 台湾",
-            vaccines: "辉瑞-BioNTech, 莫德纳, 阿斯利康, 高端疫苗",
-            count: "截至2025年3月，约2000万人接种",
-            coverage: "87.0%",
-            details: "台湾CDC报告指出，辉瑞和莫德纳为主力疫苗，高端疫苗因试验争议使用较少。根据<a href='https://www.cdc.gov.tw/En/Bulletin/Detail/2025_vaccine_update' target='_blank'>台湾CDC</a>，‘高端疫苗抗体反应低于预期，仅为mRNA疫苗的60%’。2021年供应短缺后，国际采购缓解压力，2025年覆盖率稳定在87%，加强针在年轻人中推广较慢。",
-            timeline: [
-                "2021年初：疫苗供应不足",
-                "2021年6月：大规模接种启动",
-                "2022年-2025年：推广加强针"
-            ],
-            source: "https://www.cdc.gov.tw/En"
-        },
-        usa: {
-            title: "<span class='fi fi-us'></span> 美国",
-            vaccines: "Pfizer-BioNTech, Moderna, Johnson & Johnson",
-            count: "截至2025年3月，约2.8亿人完全接种",
-            coverage: "70.0%",
-            details: "美国CDC数据显示，mRNA疫苗（Pfizer和Moderna）占主导地位。根据<a href='https://www.cdc.gov/mmwr/volumes/74/wr/mm7405e1.htm' target='_blank'>CDC研究</a>，‘mRNA疫苗对变异株的保护率约为85%，尤其对Omicron变种有效’。覆盖率因疫苗犹豫问题低于预期，2025年更新疫苗针对新变异株，接种率缓慢提升，中西部地区接种率仍低于东部沿海。",
-            timeline: [
-                "2020年12月：疫苗获批紧急使用",
-                "2021年3月：大规模接种启动",
-                "2022年-2025年：推广更新疫苗"
-            ],
-            source: "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/"
-        },
-        japan: {
-            title: "<span class='fi fi-jp'></span> 日本",
-            vaccines: "Pfizer-BioNTech, Moderna, AstraZeneca",
-            count: "截至2025年3月，约1亿人完全接种",
-            coverage: "82.0%",
-            details: "日本厚生劳动省报告显示，Pfizer疫苗使用最广，2021年Delta变种推动接种高峰。根据<a href='https://www.mhlw.go.jp/stf/covid-19/vaccine.html' target='_blank'>厚生劳动省</a>，‘接种后心肌炎风险低于预期，每百万剂仅报告3例’。2025年加强针覆盖率约75%，疫苗安全性争议较少，老年人接种率接近90%。",
-            timeline: [
-                "2021年2月：开始接种",
-                "2021年8月：针对Delta变种加速接种",
-                "2022年-2025年：推广加强针"
-            ],
-            source: "https://www.mhlw.go.jp/english/"
-        },
-        uk: {
-            title: "<span class='fi fi-gb'></span> 英国",
-            vaccines: "Pfizer-BioNTech, AstraZeneca, Moderna",
-            count: "截至2025年3月，约5500万人完全接种",
-            coverage: "81.0%",
-            details: "英国NHS报告显示，AstraZeneca和Pfizer为主力疫苗。根据<a href='https://www.gov.uk/government/publications/covid-19-vaccination-programme' target='_blank'>英国政府数据</a>，‘疫苗显著减少了住院率和死亡率，住院率下降约90%’。2025年加强针覆盖率达70%，新变种疫苗在冬季推广效果显著。",
-            timeline: [
-                "2020年12月：全球首个批准Pfizer疫苗",
-                "2021年：大规模接种AstraZeneca",
-                "2022年-2025年：推广针对变异株的疫苗"
-            ],
-            source: "https://www.nhs.uk/conditions/coronavirus-covid-19/"
-        },
-        india: {
-            title: "<span class='fi fi-in'></span> 印度",
-            vaccines: "Covishield (AstraZeneca), Covaxin",
-            count: "截至2025年3月，约10亿人完全接种",
-            coverage: "73.0%",
-            details: "印度卫生部数据显示，Covishield占主导地位。根据<a href='https://www.mohfw.gov.in/pdf/COVIDVaccinationGuide.pdf' target='_blank'>印度官方报告</a>，‘Covaxin对Delta变种有效性达78%，对重症保护率达93%’。2025年农村地区接种率有所提升，但仍低于城市地区，加强针覆盖率约60%。",
-            timeline: [
-                "2021年1月：启动全球最大疫苗计划",
-                "2021年6月：加速生产和分发",
-                "2022年-2025年：加强针推广"
-            ],
-            source: "https://www.mohfw.gov.in/"
-        },
-        brazil: {
-            title: "<span class='fi fi-br'></span> 巴西",
-            vaccines: "Pfizer-BioNTech, CoronaVac, AstraZeneca",
-            count: "截至2025年3月，约1.8亿人完全接种",
-            coverage: "84.0%",
-            details: "巴西卫生部报告显示，CoronaVac早期使用广泛。根据<a href='https://www.gov.br/saude/pt-br/assuntos/covid-19' target='_blank'>巴西官方数据</a>，‘疫苗接种显著降低了Gamma变种的传播，死亡率下降约80%’。2025年加强针覆盖率约65%，亚马逊地区接种率仍较低。",
-            timeline: [
-                "2021年1月：CoronaVac获批",
-                "2021年7月：Pfizer疫苗推广",
-                "2022年-2025年：持续接种计划"
-            ],
-            source: "https://www.gov.br/saude/pt-br/"
-        },
-        germany: {
-            title: "<span class='fi fi-de'></span> 德国",
-            vaccines: "Pfizer-BioNTech, Moderna, AstraZeneca",
-            count: "截至2025年3月，约7000万人完全接种",
-            coverage: "83.0%",
-            details: "德国RKI报告显示，Pfizer和Moderna为主力疫苗。根据<a href='https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/COVID-19_Vaccines.html' target='_blank'>RKI研究</a>，‘mRNA疫苗对变异株保护率达88%，加强针显著提升免疫力’。2025年加强针覆盖率约72%，东部地区接种率略低于西部。",
-            timeline: [
-                "2020年12月：启动接种",
-                "2021年4月：加速疫苗分发",
-                "2022年-2025年：推广加强针"
-            ],
-            source: "https://www.rki.de/"
-        },
-        russia: {
-            title: "<span class='fi fi-ru'></span> 俄罗斯",
-            vaccines: "Sputnik V, EpiVacCorona, CoviVac",
-            count: "截至2025年3月，约9000万人接种",
-            coverage: "61.0%",
-            details: "俄罗斯卫生部报告显示，Sputnik V为主力疫苗。根据<a href='https://sputnikvaccine.com/about-sputnik-v/' target='_blank'>Sputnik V官网</a>，‘疫苗对原始毒株有效性达91.6%，对Delta变种约83%’。2025年覆盖率因疫苗犹豫较低，加强针推广缓慢。",
-            timeline: [
-                "2020年8月：Sputnik V全球首发",
-                "2021年：全国推广",
-                "2022年-2025年：加强针逐步展开"
-            ],
-            source: "https://www.gosuslugi.ru/covid-cert/"
-        },
-        southafrica: {
-            title: "<span class='fi fi-za'></span> 南非",
-            vaccines: "Pfizer-BioNTech, Johnson & Johnson",
-            count: "截至2025年3月，约3500万人接种",
-            coverage: "58.0%",
-            details: "南非卫生部报告显示，Johnson & Johnson因单剂特点使用广泛。根据<a href='https://www.gov.za/covid-19/vaccine' target='_blank'>南非政府数据</a>，‘疫苗对Beta变种保护率约70%，对重症有效性更高’。2025年覆盖率因物流问题较低，加强针覆盖率约40%。",
-            timeline: [
-                "2021年2月：启动接种",
-                "2021年8月：加速疫苗分发",
-                "2022年-2025年：推广加强针"
-            ],
-            source: "https://www.gov.za/covid-19/vaccine"
-        }
-    };
-    const regions = document.querySelectorAll('.region');
-    const infoPanel = document.getElementById('infoPanel');
-    const regionTitle = document.getElementById('regionTitle');
-    const vaccineTypes = document.getElementById('vaccineTypes');
-    const vaccinatedCount = document.getElementById('vaccinatedCount');
-    const coverageRate = document.getElementById('coverageRate');
-    const details = document.getElementById('details');
-    const progressBar = document.getElementById('progressBar');
-    const timeline = document.getElementById('timeline');
-    const dataSource = document.getElementById('dataSource');
-    let animationFrame;
-    async function fetchVaccineData() {
-        try {
-            const response = await fetch('https://disease.sh/v3/covid-19/vaccine/coverage/countries?lastdays=1');
-            const data = await response.json();
-            updateDataFromAPI(data);
-        } catch (error) {
-            console.error('获取疫苗数据失败:', error);
-        }
-    }
-    function updateDataFromAPI(apiData) {
-        const countryMapping = {
-            'China': 'mainland',
-            'Hong Kong': 'hongkong',
-            'Macau': 'macau',
-            'Taiwan': 'taiwan',
-            'United States': 'usa',
-            'Japan': 'japan',
-            'United Kingdom': 'uk',
-            'India': 'india',
-            'Brazil': 'brazil',
-            'Germany': 'germany',
-            'Russia': 'russia',
-            'South Africa': 'southafrica'
-        };
-        apiData.forEach(country => {
-            const regionKey = countryMapping[country.country];
-            if (regionKey && vaccineData[regionKey]) {
-                const latest = country.timeline[Object.keys(country.timeline)[0]];
-                vaccineData[regionKey].count = `截至最新数据，${latest}剂次`;
-                vaccineData[regionKey].coverage = Math.min((latest / 1000000) * 100, 100).toFixed(1) + '%';
+    <script>
+        const vaccineData = {
+            mainland: {
+                title: "<span class='fi fi-cn'></span> 中国大陆",
+                vaccines: "Sinovac (科兴), Sinopharm (国药), CanSino",
+                count: "截至2025年3月，约36亿剂次",
+                coverage: "92.5%",
+                details: "中国大陆自2020年起大规模推广国产疫苗，Sinovac和Sinopharm为主要类型。根据<a href='https://www.who.int/news-room/feature-stories/detail/who-supports-vaccine-rollout-in-china' target='_blank'>WHO报告</a>，疫苗有效性在50%-79%之间，对重症保护显著，‘疫苗在降低重症病例和死亡率方面发挥了重要作用，尤其在老年人群体中效果显著’。截至2025年，加强针覆盖率达80%以上，特别是在高风险人群和城市地区推广成效显著，农村地区接种率逐步提高。",
+                timeline: [
+                    "2020年12月：疫苗获批紧急使用",
+                    "2021年3月：全国大规模接种启动",
+                    "2022年-2025年：推广加强针，覆盖率达92.5%"
+                ],
+                source: "https://data.who.int/dashboards/covid19/"
+            },
+            hongkong: {
+                title: "<span class='fi fi-hk'></span> 香港",
+                vaccines: "辉瑞-BioNTech, 莫德纳, 科兴",
+                count: "截至2025年3月，约800万人接种",
+                coverage: "85.0%",
+                details: "香港卫生署报告显示，辉瑞疫苗占接种量的50%以上，科兴因储存便利使用广泛。根据<a href='https://www.chp.gov.hk/files/pdf/covid_vaccination_programme_evaluation.pdf' target='_blank'>香港卫生署</a>，‘mRNA疫苗在免疫反应上表现优于灭活疫苗，抗体水平平均高出30%’。2021年包装问题曾引发争议，但经调查后恢复正常供应。2025年加强针覆盖率约70%，尤其在医疗工作者和老年人中普及率较高。",
+                timeline: [
+                    "2021年1月：批准辉瑞疫苗",
+                    "2021年3月24日：暂停BioNTech疫苗，后恢复",
+                    "2022年-2025年：持续推广加强针"
+                ],
+                source: "https://www.chp.gov.hk/en/index.html"
+            },
+            macau: {
+                title: "<span class='fi fi-mo'></span> 澳门",
+                vaccines: "辉瑞-BioNTech, 科兴",
+                count: "截至2025年3月，约65万人完成两剂",
+                coverage: "88.0%",
+                details: "澳门卫生局数据显示，辉瑞和科兴疫苗为主，覆盖率逐年提升。根据<a href='https://www.ssm.gov.mo/docs/2025_vaccine_report.pdf' target='_blank'>澳门卫生局报告</a>，‘疫苗接种后未见重大不良反应，安全性较高’。2022年后取消疫苗证明要求，2025年加强针接种率达60%，旅游业复苏推动疫苗推广，特别是在服务行业从业者中接种率接近95%。",
+                timeline: [
+                    "2021年：开始接种",
+                    "2022年8月17日：取消疫苗证明要求",
+                    "2025年：加强针覆盖率提高至60%"
+                ],
+                source: "https://www.ssm.gov.mo/"
+            },
+            taiwan: {
+                title: "<span class='fi fi-tw'></span> 台湾",
+                vaccines: "辉瑞-BioNTech, 莫德纳, 阿斯利康, 高端疫苗",
+                count: "截至2025年3月，约2000万人接种",
+                coverage: "87.0%",
+                details: "台湾CDC报告指出，辉瑞和莫德纳为主力疫苗，高端疫苗因试验争议使用较少。根据<a href='https://www.cdc.gov.tw/En/Bulletin/Detail/2025_vaccine_update' target='_blank'>台湾CDC</a>，‘高端疫苗抗体反应低于预期，仅为mRNA疫苗的60%’。2021年供应短缺后，国际采购缓解压力，2025年覆盖率稳定在87%，加强针在年轻人中推广较慢。",
+                timeline: [
+                    "2021年初：疫苗供应不足",
+                    "2021年6月：大规模接种启动",
+                    "2022年-2025年：推广加强针"
+                ],
+                source: "https://www.cdc.gov.tw/En"
+            },
+            usa: {
+                title: "<span class='fi fi-us'></span> 美国",
+                vaccines: "Pfizer-BioNTech, Moderna, Johnson & Johnson",
+                count: "截至2025年3月，约2.8亿人完全接种",
+                coverage: "70.0%",
+                details: "美国CDC数据显示，mRNA疫苗（Pfizer和Moderna）占主导地位。根据<a href='https://www.cdc.gov/mmwr/volumes/74/wr/mm7405e1.htm' target='_blank'>CDC研究</a>，‘mRNA疫苗对变异株的保护率约为85%，尤其对Omicron变种有效’。覆盖率因疫苗犹豫问题低于预期，2025年更新疫苗针对新变异株，接种率缓慢提升，中西部地区接种率仍低于东部沿海。",
+                timeline: [
+                    "2020年12月：疫苗获批紧急使用",
+                    "2021年3月：大规模接种启动",
+                    "2022年-2025年：推广更新疫苗"
+                ],
+                source: "https://www.cdc.gov/coronavirus/2019-ncov/vaccines/"
+            },
+            japan: {
+                title: "<span class='fi fi-jp'></span> 日本",
+                vaccines: "Pfizer-BioNTech, Moderna, AstraZeneca",
+                count: "截至2025年3月，约1亿人完全接种",
+                coverage: "82.0%",
+                details: "日本厚生劳动省报告显示，Pfizer疫苗使用最广，2021年Delta变种推动接种高峰。根据<a href='https://www.mhlw.go.jp/stf/covid-19/vaccine.html' target='_blank'>厚生劳动省</a>，‘接种后心肌炎风险低于预期，每百万剂仅报告3例’。2025年加强针覆盖率约75%，疫苗安全性争议较少，老年人接种率接近90%。",
+                timeline: [
+                    "2021年2月：开始接种",
+                    "2021年8月：针对Delta变种加速接种",
+                    "2022年-2025年：推广加强针"
+                ],
+                source: "https://www.mhlw.go.jp/english/"
+            },
+            uk: {
+                title: "<span class='fi fi-gb'></span> 英国",
+                vaccines: "Pfizer-BioNTech, AstraZeneca, Moderna",
+                count: "截至2025年3月，约5500万人完全接种",
+                coverage: "81.0%",
+                details: "英国NHS报告显示，AstraZeneca和Pfizer为主力疫苗。根据<a href='https://www.gov.uk/government/publications/covid-19-vaccination-programme' target='_blank'>英国政府数据</a>，‘疫苗显著减少了住院率和死亡率，住院率下降约90%’。2025年加强针覆盖率达70%，新变种疫苗在冬季推广效果显著。",
+                timeline: [
+                    "2020年12月：全球首个批准Pfizer疫苗",
+                    "2021年：大规模接种AstraZeneca",
+                    "2022年-2025年：推广针对变异株的疫苗"
+                ],
+                source: "https://www.nhs.uk/conditions/coronavirus-covid-19/"
+            },
+            india: {
+                title: "<span class='fi fi-in'></span> 印度",
+                vaccines: "Covishield (AstraZeneca), Covaxin",
+                count: "截至2025年3月，约10亿人完全接种",
+                coverage: "73.0%",
+                details: "印度卫生部数据显示，Covishield占主导地位。根据<a href='https://www.mohfw.gov.in/pdf/COVIDVaccinationGuide.pdf' target='_blank'>印度官方报告</a>，‘Covaxin对Delta变种有效性达78%，对重症保护率达93%’。2025年农村地区接种率有所提升，但仍低于城市地区，加强针覆盖率约60%。",
+                timeline: [
+                    "2021年1月：启动全球最大疫苗计划",
+                    "2021年6月：加速生产和分发",
+                    "2022年-2025年：加强针推广"
+                ],
+                source: "https://www.mohfw.gov.in/"
+            },
+            brazil: {
+                title: "<span class='fi fi-br'></span> 巴西",
+                vaccines: "Pfizer-BioNTech, CoronaVac, AstraZeneca",
+                count: "截至2025年3月，约1.8亿人完全接种",
+                coverage: "84.0%",
+                details: "巴西卫生部报告显示，CoronaVac早期使用广泛。根据<a href='https://www.gov.br/saude/pt-br/assuntos/covid-19' target='_blank'>巴西官方数据</a>，‘疫苗接种显著降低了Gamma变种的传播，死亡率下降约80%’。2025年加强针覆盖率约65%，亚马逊地区接种率仍较低。",
+                timeline: [
+                    "2021年1月：CoronaVac获批",
+                    "2021年7月：Pfizer疫苗推广",
+                    "2022年-2025年：持续接种计划"
+                ],
+                source: "https://www.gov.br/saude/pt-br/"
+            },
+            germany: {
+                title: "<span class='fi fi-de'></span> 德国",
+                vaccines: "Pfizer-BioNTech, Moderna, AstraZeneca",
+                count: "截至2025年3月，约7000万人完全接种",
+                coverage: "83.0%",
+                details: "德国RKI报告显示，Pfizer和Moderna为主力疫苗。根据<a href='https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/COVID-19_Vaccines.html' target='_blank'>RKI研究</a>，‘mRNA疫苗对变异株保护率达88%，加强针显著提升免疫力’。2025年加强针覆盖率约72%，东部地区接种率略低于西部。",
+                timeline: [
+                    "2020年12月：启动接种",
+                    "2021年4月：加速疫苗分发",
+                    "2022年-2025年：推广加强针"
+                ],
+                source: "https://www.rki.de/"
+            },
+            russia: {
+                title: "<span class='fi fi-ru'></span> 俄罗斯",
+                vaccines: "Sputnik V, EpiVacCorona, CoviVac",
+                count: "截至2025年3月，约9000万人接种",
+                coverage: "61.0%",
+                details: "俄罗斯卫生部报告显示，Sputnik V为主力疫苗。根据<a href='https://sputnikvaccine.com/about-sputnik-v/' target='_blank'>Sputnik V官网</a>，‘疫苗对原始毒株有效性达91.6%，对Delta变种约83%’。2025年覆盖率因疫苗犹豫较低，加强针推广缓慢。",
+                timeline: [
+                    "2020年8月：Sputnik V全球首发",
+                    "2021年：全国推广",
+                    "2022年-2025年：加强针逐步展开"
+                ],
+                source: "https://www.gosuslugi.ru/covid-cert/"
+            },
+            southafrica: {
+                title: "<span class='fi fi-za'></span> 南非",
+                vaccines: "Pfizer-BioNTech, Johnson & Johnson",
+                count: "截至2025年3月，约3500万人接种",
+                coverage: "58.0%",
+                details: "南非卫生部报告显示，Johnson & Johnson因单剂特点使用广泛。根据<a href='https://www.gov.za/covid-19/vaccine' target='_blank'>南非政府数据</a>，‘疫苗对Beta变种保护率约70%，对重症有效性更高’。2025年覆盖率因物流问题较低，加强针覆盖率约40%。",
+                timeline: [
+                    "2021年2月：启动接种",
+                    "2021年8月：加速疫苗分发",
+                    "2022年-2025年：推广加强针"
+                ],
+                source: "https://www.gov.za/covid-19/vaccine"
             }
-        });
-    }
-    regions.forEach(region => {
-        region.addEventListener('click', () => {
-            if (animationFrame) cancelAnimationFrame(animationFrame);
-            const dataKey = region.getAttribute('data-region');
-            const data = vaccineData[dataKey];
-            regionTitle.innerHTML = data.title;
-            vaccineTypes.textContent = data.vaccines;
-            vaccinatedCount.textContent = data.count;
-            coverageRate.textContent = data.coverage;
-            details.innerHTML = data.details;
-            dataSource.href = data.source;
-            dataSource.textContent = '官方文档';
-            progressBar.style.width = '0';
-            timeline.innerHTML = '';
-            data.timeline.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'timeline-item';
-                div.textContent = item;
-                timeline.appendChild(div);
+        };
+        const regions = document.querySelectorAll('.region');
+        const infoPanel = document.getElementById('infoPanel');
+        const regionTitle = document.getElementById('regionTitle');
+        const vaccineTypes = document.getElementById('vaccineTypes');
+        const vaccinatedCount = document.getElementById('vaccinatedCount');
+        const coverageRate = document.getElementById('coverageRate');
+        const details = document.getElementById('details');
+        const progressBar = document.getElementById('progressBar');
+        const timeline = document.getElementById('timeline');
+        const dataSource = document.getElementById('dataSource');
+        let animationFrame;
+        async function fetchVaccineData() {
+            try {
+                const response = await fetch('https://disease.sh/v3/covid-19/vaccine/coverage/countries?lastdays=1');
+                const data = await response.json();
+                updateDataFromAPI(data);
+            } catch (error) {
+                console.error('获取疫苗数据失败:', error);
+            }
+        }
+        function updateDataFromAPI(apiData) {
+            const countryMapping = {
+                'China': 'mainland',
+                'Hong Kong': 'hongkong',
+                'Macau': 'macau',
+                'Taiwan': 'taiwan',
+                'United States': 'usa',
+                'Japan': 'japan',
+                'United Kingdom': 'uk',
+                'India': 'india',
+                'Brazil': 'brazil',
+                'Germany': 'germany',
+                'Russia': 'russia',
+                'South Africa': 'southafrica'
+            };
+            apiData.forEach(country => {
+                const regionKey = countryMapping[country.country];
+                if (regionKey && vaccineData[regionKey]) {
+                    const latest = country.timeline[Object.keys(country.timeline)[0]];
+                    vaccineData[regionKey].count = `截至最新数据，${latest}剂次`;
+                    vaccineData[regionKey].coverage = Math.min((latest / 1000000) * 100, 100).toFixed(1) + '%';
+                }
             });
-            infoPanel.style.display = 'block';
-            requestAnimationFrame(() => {
-                infoPanel.classList.add('show');
-            });
-            regions.forEach(r => r.classList.remove('active'));
-            region.classList.add('active');
-            animationFrame = requestAnimationFrame(() => {
-                progressBar.style.width = data.coverage;
-                const timelineItems = timeline.querySelectorAll('.timeline-item');
-                timelineItems.forEach((item, index) => {
-                    setTimeout(() => item.classList.add('show'), index * 100);
+        }
+        regions.forEach(region => {
+            region.addEventListener('click', () => {
+                if (animationFrame) cancelAnimationFrame(animationFrame);
+                const dataKey = region.getAttribute('data-region');
+                const data = vaccineData[dataKey];
+                regionTitle.innerHTML = data.title;
+                vaccineTypes.textContent = data.vaccines;
+                vaccinatedCount.textContent = data.count;
+                coverageRate.textContent = data.coverage;
+                details.innerHTML = data.details;
+                dataSource.href = data.source;
+                dataSource.textContent = '官方文档';
+                progressBar.style.width = '0';
+                timeline.innerHTML = '';
+                data.timeline.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'timeline-item';
+                    div.textContent = item;
+                    timeline.appendChild(div);
+                });
+                infoPanel.style.display = 'block';
+                requestAnimationFrame(() => {
+                    infoPanel.classList.add('show');
+                });
+                regions.forEach(r => r.classList.remove('active'));
+                region.classList.add('active');
+                animationFrame = requestAnimationFrame(() => {
+                    progressBar.style.width = data.coverage;
+                    const timelineItems = timeline.querySelectorAll('.timeline-item');
+                    timelineItems.forEach((item, index) => {
+                        setTimeout(() => item.classList.add('show'), index * 100);
+                    });
                 });
             });
         });
-    });
-    function closePanel() {
-        if (animationFrame) cancelAnimationFrame(animationFrame);
-        infoPanel.classList.remove('show');
-        setTimeout(() => {
-            infoPanel.style.display = 'none';
-            regions.forEach(r => r.classList.remove('active'));
-            progressBar.style.width = '0';
-            timeline.querySelectorAll('.timeline-item').forEach(item => item.classList.remove('show'));
-        }, 400);
-    }
-    function showVaccineData() {
-        let vaccineInfo = '疫苗数据概览（截止2025年3月）:\n';
-        for (const key in vaccineData) {
-            vaccineInfo += `${vaccineData[key].title.replace(/<[^>]+>/g, '')}: ${vaccineData[key].vaccines} - 覆盖率: ${vaccineData[key].coverage}\n`;
+        function closePanel() {
+            if (animationFrame) cancelAnimationFrame(animationFrame);
+            infoPanel.classList.remove('show');
+            setTimeout(() => {
+                infoPanel.style.display = 'none';
+                regions.forEach(r => r.classList.remove('active'));
+                progressBar.style.width = '0';
+                timeline.querySelectorAll('.timeline-item').forEach(item => item.classList.remove('show'));
+            }, 400);
         }
-        alert(vaccineInfo);
-    }
-    function showReport() {
-        const report = `
+        function showVaccineData() {
+            let vaccineInfo = '疫苗数据概览（截止2025年3月）:\n';
+            for (const key in vaccineData) {
+                vaccineInfo += `${vaccineData[key].title.replace(/<[^>]+>/g, '')}: ${vaccineData[key].vaccines} - 覆盖率: ${vaccineData[key].coverage}\n`;
+            }
+            alert(vaccineInfo);
+        }
+        function showReport() {
+            const report = `
 研究报告概览（截止2025年3月）:
 - 中国大陆: WHO报告指出，Sinovac和Sinopharm疫苗对重症保护率达90%以上，但对轻症保护较低（50%-79%），加强针显著提升效果。
 - 香港: 卫生署研究显示，辉瑞疫苗免疫反应优于科兴，2025年mRNA疫苗使用率提升至60%。
@@ -490,9 +490,14 @@
 - 俄罗斯: Sputnik V研究显示，对原始毒株有效性91.6%，疫苗犹豫影响覆盖率。
 - 南非: 卫生部研究指出，疫苗对Beta变种保护率约70%，物流问题限制覆盖率。
             `;
-        alert(report);
-    }
-    fetchVaccineData();
-</script>
+            alert(report);
+        }
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && infoPanel.classList.contains('show')) {
+                closePanel();
+            }
+        });
+        fetchVaccineData();
+    </script>
 </body>
 </html>
